@@ -1,0 +1,7 @@
+runpod_network_volume:
+  base_path: /runpod-volume/runpod-slim/ComfyUI
+  checkpoints: models/checkpoints/
+  loras: models/loras/
+  text_encoders: models/text_encoders/
+  vae: models/vae/
+  latent_upscale_models: models/latent_upscale_models/
