@@ -1,6 +1,8 @@
 # clean base image containing only comfyui, comfy-cli and comfyui-manager
 FROM runpod/worker-comfyui:5.8.4-base
 
+COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
+
 # Instala os custom nodes necessários pro LTX-2.3 (evita depender do Manager em runtime)
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/Lightricks/ComfyUI-LTXVideo && \
