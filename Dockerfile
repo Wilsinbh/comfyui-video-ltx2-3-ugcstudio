@@ -1,6 +1,18 @@
 # clean base image containing only comfyui, comfy-cli and comfyui-manager
 FROM runpod/worker-comfyui:5.8.4-base
 
+# Instala os custom nodes necessários pro LTX-2.3 (evita depender do Manager em runtime)
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/Lightricks/ComfyUI-LTXVideo && \
+    cd ComfyUI-LTXVideo && \
+    pip install -r requirements.txt
+
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/kijai/ComfyUI-KJNodes
+
+# Corrige a incompatibilidade do kornia >= 0.8.3 com o node de pyramid blending do LTXVideo
+RUN pip install kornia==0.7.3
+
 # copy all input data (like images or videos) into comfyui (uncomment and adjust if needed)
 # COPY input/ /comfyui/input/
 
